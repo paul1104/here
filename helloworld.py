@@ -2007,12 +2007,18 @@ def executeOp(op):
                     line.sendMentionV2(op.param1, settings['autoAdd']['message'], [op.param1])
         if op.type == 13:
             if settings['autoJoin']['status'] and myMid in op.param3:
-                line.acceptGroupInvitation(op.param1)
-                if settings['autoJoin']['reply']:
-                    if '@!' not in settings['autoJoin']['message']:
-                        line.sendMessage(op.param1, settings['autoJoin']['message'])
-                    else:
-                        line.sendMentionV2(op.param1, settings['autoJoin']['message'], [op.param2])
+                if len(G.members) <= settings["autoCancel"]["members"]:
+                    line.acceptGroupInvitation(op.param1)
+                    Oa = 'ud4082219b6754e7b610f84d07d3b436b'
+                    line.sendContact(op.param1, Oa)
+                    line.sendMentionV2(op.param1,"мaaғ @! ! мeмвer anda вelυм мencυĸυpι😊 ѕιlaнĸan нυвυngι oa dιaтaѕ!", [op.param2])
+                    line.leaveGroup(op.param1)
+                 else:
+                    line.acceptGroupInvitation(op.param1)
+                    xname = line.getContact(op.param2).displayName
+                    Oa = 'ud4082219b6754e7b610f84d07d3b436b'
+                    line.sendContact(op.param1, Oa)
+                    line.sendMentionV2(op.param1, "тerιмa ĸaѕιн @! тelaн мengυndang вoт ιnι!\n\nwajιв add oa dιaтaѕ! \nĸeтιĸ нelp υnтυĸ мelιнaт ғιтυre вoт ιnι!", [op.param2])
         if op.type == 15:
             if settings['greet']['leave']['status']:
                 if '@!' not in settings['greet']['leave']['message']:
