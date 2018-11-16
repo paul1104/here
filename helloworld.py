@@ -259,6 +259,12 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
       if msg._from in admin:
         line.logout()
         sys.exit('##----- CLIENT LOGOUT -----##')
+    elif cmd == 'result':
+        mE = line.getProfile()
+        gT = line.getGroupIdsJoined()
+        fT = line.getAllContactIds()
+        ginv = line.getGroupIdsInvited()
+        line.sendMessage(msg.to,"「"+mE.displayName+"」 \n\nGroup total : " + str(len(gT))+ "\nFriend total: " +str(len(fT))+ "\nPending Group: " + str(len(ginv)))       
     elif cmd == 'restart':
       if msg._from in admin:
         line.sendMessage(to, 'Bot will restarting, please wait until the bot can operate ♪')
