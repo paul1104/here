@@ -1,23 +1,23 @@
 {
     "autoAdd": {
         "status": false,
-        "message": "Hello @!, thanks for add me as your friend\nSelfbot by Hello World",
+        "message": "Hello @!, Thanks for add me as your friend!",
         "reply": true
     },
     "autoJoin": {
         "status": false,
-        "message": "Hello @!, thanks for invite me to this group\nSelfbot by Hello World",
+        "message": "Hello @!, Thanks for invite me to this group!\nKetik "{key}help" untuk menampilkan menu!",
         "reply": true,
         "ticket": false
     },
     "autoRead": false,
     "autoRespond": {
         "status": false,
-        "message": "Hello @!, thanks for your message this is auto respond\nSelfbot by Hello World"
+        "message": "Hello @!, Thanks for your message this is auto respond!"
     },
     "autoRespondMention": {
         "status": false,
-        "message": "Hello @!, thanks for mentioned me, if your message is very important please leave it on personal chat\nSelfbot by Hello World"
+        "message": "Hello @!, Thanks for mentioned me, if your message is very important please leave it on personal chat!"
     },
     "changeGroupPicture": [],
     "changePictureProfile": false,
@@ -51,6 +51,6 @@
         "status": true,
         "key": "."
     },
-    "copyright": "If you respect the author please don't remove this copyright\n© 2018 Hello World",
-    "author_lineid": "You can add the author by line id, https://line.me/ti/p/~zero-cool404"
+    "copyright": "If you respect the author please don't remove this copyright!",
+    "author_lineid": "You can add the author by line id, https://line.me/ti/p/~syahraqa"
 }
