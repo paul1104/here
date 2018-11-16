@@ -94,63 +94,7 @@ oepoll = OEPoll(line)
 tmp_text = []
 lurking = {}
 
-settings = {
-    'autoCancel':{"on":True,"members":10},
-    "autoAdd": {
-        "status": false,
-        "message": "Hello @!, Thanks for add me as your friend!",
-        "reply": true
-    },
-    "autoJoin": {
-        "status": false,
-        "message": "Hello @!, Thanks for invite me to this group!\nKetik "{key}help" untuk menampilkan menu!",
-        "reply": true,
-        "ticket": false
-    },
-    "autoRead": false,
-    "autoRespond": {
-        "status": false,
-        "message": "Hello @!, Thanks for your message this is auto respond!"
-    },
-    "autoRespondMention": {
-        "status": false,
-        "message": "Hello @!, Thanks for mentioned me, if your message is very important please leave it on personal chat!"
-    },
-    "changeGroupPicture": [],
-    "changePictureProfile": false,
-    "changeCoverProfile": false,
-    "checkContact": false,
-    "checkPost": false,
-    "checkSticker": false,
-    "defaultReplyReader" : "Hello @!, come here join to chat",
-    "greet": {
-        "join": {
-            "status": false,
-            "message": "Hello @!, welcome to group {name}"
-        },
-        "leave": {
-            "status": false,
-            "message": "Good bye @!, see you next time"
-        }
-    },
-    "myProfile": {
-        "coverId": "",
-        "displayName": "",
-        "pictureStatus": "",
-        "statusMessage": ""
-    },
-    "mimic": {
-        "status": false,
-        "target": {}
-    },
-    "restartPoint": null,
-    "setKey": {
-        "status": true,
-        "key": "."
-    },
-    "copyright": "If you respect the author please don't remove this copyright!",
-    "author_lineid": "You can add the author by line id, https://line.me/ti/p/~syahraqa"
-}
+settings = livejson.File('setting.json', True, False, 4)
 
 bool_dict = {
     True: ['Yes', 'Active', 'Success', 'Open', 'On'],
