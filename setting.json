@@ -1,4 +1,5 @@
 {
+    'autoCancel':{"on":True,"members":10},
     "autoAdd": {
         "status": false,
         "message": "Hello @!, Thanks for add me as your friend!",
