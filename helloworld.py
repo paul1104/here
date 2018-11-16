@@ -84,6 +84,10 @@ if line:
 else:
     sys.exit('##----- LOGIN CLIENT (Failed) -----##')
 
+boty = ["u1869dc950cf9211164a150d91aa150db","u9ed37b221ed5b78a46d6209d93159bef","u3a354e28238fabd00ebfdbcac12e5973"]
+admin=["ub8530f15ff4020c3cc2d1ad2f066aa4b","u5601bdfbc2c67e7adcb95f790127b193"]
+owner=["ub8530f15ff4020c3cc2d1ad2f066aa4b","u5601bdfbc2c67e7adcb95f790127b193"]
+
 myMid = line.profile.mid
 programStart = time.time()
 oepoll = OEPoll(line)
@@ -210,7 +214,7 @@ def mentionMembers(to, mids=[]):
             elen = len(result) + 3
             mentionees.append({'S': str(slen), 'E': str(elen - 4), 'M': mid})
             if mid == mids[-1]:
-                result += '╰───「 Hello World 」\n'
+                result += '╰───「 Kaneki Official 」\n'
         if result:
             if result.endswith('\n'): result = result[:-1]
             line.sendMessage(to, result, {'MENTION': json.dumps({'MENTIONEES': mentionees})}, 0)
@@ -248,36 +252,44 @@ def restoreProfile():
 
 def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     if cmd == 'logoutbot':
+     if msg._from in admin:
         line.sendMessage(to, 'Bot will logged out')
         sys.exit('##----- PROGRAM STOPPED -----##')
     elif cmd == 'logoutdevicee':
+      if msg._from in admin:
         line.logout()
         sys.exit('##----- CLIENT LOGOUT -----##')
     elif cmd == 'restart':
+      if msg._from in admin:
         line.sendMessage(to, 'Bot will restarting, please wait until the bot can operate ♪')
         settings['restartPoint'] = to
         restartProgram()
     elif cmd == 'help':
         line.sendReplyMessage(msg_id, to, help())
+        Oa = "ud4082219b6754e7b610f84d07d3b436b"
+        line.sendContact(to, Oa)
     elif cmd == 'speed':
         start = time.time()
         line.sendMessage(to, 'Checking speed')
         elapse = time.time() - start
         line.sendMessage(to, 'Speed sending message took %s seconds' % str(elapse))
     elif cmd == 'me':
-        line.sendContact(to, myMid)
+        line.sendContact(to, msg._from)
     elif cmd == 'runtime':
         runtime = time.time() - programStart
         line.sendMessage(to, 'Bot already running on ' + format_timespan(runtime))
     elif cmd == 'author':
-        line.sendMessage(to, 'Author is linepy')
+        line.sendMessage(to, 'My author is Kaneki Official!')
+        Oa = "ud4082219b6754e7b610f84d07d3b436b"
+        line.sendContact(to, Oa)
     elif cmd == 'about':
         res = '╭───「 About 」'
-        res += '\n├ Type : Selfbot Hello World'
-        res += '\n├ Version : 3.0.8'
-        res += '\n├ Library : linepy (Python)'
-        res += '\n├ Creator : Zero Cool'
-        res += '\n╰───「 Hello World 」'
+        res += '\n├ Type : Kaneki New Bot'
+        res += '\n├ Version : 4.0.0'
+        res += '\n├ Creator : Syahraqa'
+        res += '\n╰───「 Kaneki Official 」'
+        Oa = "ud4082219b6754e7b610f84d07d3b436b"
+        line.sendContact(to, Oa)
         line.sendMessage(to, res)
     elif cmd == 'status':
         res = '╭───「 Status 」'
@@ -366,6 +378,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif txt.startswith('setkey'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         res = '╭───「 Setting Key 」'
@@ -394,6 +407,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             settings['setKey']['key'] = texttl
             line.sendMessage(to, 'Success change set key to (%s)' % textt)
     elif cmd.startswith('autoadd'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         cond = textt.split(' ')
@@ -442,6 +456,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             settings['autoAdd']['message'] = textt
             line.sendMessage(to, 'Success change autoadd message to `%s`' % textt)
     elif cmd.startswith('autojoin'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         cond = textt.split(' ')
@@ -508,6 +523,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             settings['autoJoin']['message'] = textt
             line.sendMessage(to, 'Success change autojoin message to `%s`' % textt)
     elif cmd.startswith('autorespondmention'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         res = '╭───「 Auto Respond 」'
@@ -536,6 +552,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             settings['autoRespondMention']['message'] = textt
             line.sendMessage(to, 'Success change autorespondmention message to `%s`' % textt)
     elif cmd.startswith('autorespond'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         res = '╭───「 Auto Respond 」'
@@ -564,6 +581,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             settings['autoRespond']['message'] = textt
             line.sendMessage(to, 'Success change autorespond message to `%s`' % textt)
     elif cmd.startswith('autoread '):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         if texttl == 'on':
@@ -579,6 +597,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 settings['autoRead'] = False
                 line.sendMessage(to, 'Success deactivated autoread')
     elif cmd.startswith('checkcontact '):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         if texttl == 'on':
@@ -594,6 +613,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 settings['checkContact'] = False
                 line.sendMessage(to, 'Success deactivated checkcontact')
     elif cmd.startswith('checkpost '):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         if texttl == 'on':
@@ -609,6 +629,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 settings['checkPost'] = False
                 line.sendMessage(to, 'Success deactivated checkpost')
     elif cmd.startswith('checksticker '):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         if texttl == 'on':
@@ -624,6 +645,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 settings['checkSticker'] = False
                 line.sendMessage(to, 'Success deactivated checksticker')
     elif cmd.startswith('myprofile'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         profile = line.getProfile()
@@ -871,6 +893,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('mimic'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         targets = ''
@@ -959,6 +982,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('broadcast'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         cond = textt.split(' ')
@@ -1021,6 +1045,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             line.sendMessage(to, parsingRes(res).format(key=setKey.title()))
     elif cmd.startswith('friendlist'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         cids = line.getAllContactIds()
@@ -1214,6 +1239,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             for res in ress:
                 line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('blocklist'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         cids = line.getBlockedContactIds()
@@ -1453,6 +1479,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             line.sendContact(to, ccreator)
         line.sendMessage(to, res)
     elif cmd.startswith('grouplist'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         gids = line.getGroupIdsJoined()
@@ -1540,6 +1567,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             for res in ress:
                 line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('invitationlist'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         gids = line.getGroupIdsInvited()
@@ -1738,6 +1766,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             line.sendMessage(to, 'Command already active, please send the image or type `{key}Abort` if want cancel it.\nFYI: Downloading images will fail if too long upload the image'.format(key=setKey.title()))
     elif cmd == 'kickall':
+      if msg._from in admin:
         if msg.toType != 2: return line.sendMessage(to, 'Failed kick all members, use this command only on group chat')
         group = line.getCompactGroup(to)
         if not group.members:
@@ -1872,6 +1901,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('greet'):
+      if msg._from in admin:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         res = '╭───「 Greet Message 」'
@@ -1927,6 +1957,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             line.sendMessage(to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
     elif cmd.startswith('kick '):
+      if msg._from in admin:
         if msg.toType != 2: return line.sendMessage(to, 'Failed kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
             mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -1943,6 +1974,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         else:
             line.sendMessage(to, 'Failed kick member, please mention user you want to kick')
     elif cmd.startswith('vkick '):
+      if msg._from in admin:
         if msg.toType != 2: return line.sendMessage(to, 'Failed vultra kick member, use this command only on group chat')
         if 'MENTION' in msg.contentMetadata.keys():
             mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -1993,7 +2025,7 @@ def executeOp(op):
                     line.sendMessage(op.param1, settings['greet']['join']['message'].format(name=line.getCompactGroup(op.param1).name))
                 else:
                     line.sendMentionV2(op.param1, settings['greet']['join']['message'].format(name=line.getCompactGroup(op.param1).name), [op.param2])
-        if op.type == 25:
+        if op.type == 26:
             msg      = op.message
             text     = str(msg.text)
             msg_id   = msg.id
