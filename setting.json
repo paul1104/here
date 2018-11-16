@@ -7,7 +7,7 @@
     },
     "autoJoin": {
         "status": false,
-        "message": "Hello @!, Thanks for invite me to this group!\nKetik "{key}help" untuk menampilkan menu!",
+        "message": "Hello @!, Thanks for invite me to this group!",
         "reply": true,
         "ticket": false
     },
