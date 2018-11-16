@@ -2013,7 +2013,7 @@ def executeOp(op):
                     line.sendContact(op.param1, Oa)
                     line.sendMentionV2(op.param1,"мaaғ @! ! мeмвer anda вelυм мencυĸυpι😊 ѕιlaнĸan нυвυngι oa dιaтaѕ!", [op.param2])
                     line.leaveGroup(op.param1)
-                 else:
+                else:
                     line.acceptGroupInvitation(op.param1)
                     xname = line.getContact(op.param2).displayName
                     Oa = 'ud4082219b6754e7b610f84d07d3b436b'
